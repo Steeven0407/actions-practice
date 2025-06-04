@@ -10,6 +10,9 @@ jobs:
     name: Primer trabajo asignado
     runs-on: ubuntu-latest
 
+    outputs:
+      salida: hola sali ya
+
     env:
       name: steeven sayago
 
@@ -31,5 +34,9 @@ jobs:
       - name: action
         uses: actions/checkout@v4
 
-      - name: working dir
-        run: ls -al
+      - name: def variable
+        id: def_variable
+        run: echo "my_variable= hola mundo variable">> $GITHUB_OUTPUT
+
+      - name: msj
+        run: echo "${{ steps.def_variable.outputs.my_variable }}"
