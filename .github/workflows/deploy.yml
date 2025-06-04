@@ -17,26 +17,11 @@ jobs:
       name: steeven sayago
 
     steps:
-      - name: hola mundo
-        run: echo "Hola mundo  de ${{ env.name }}"
+      - name: generar archivo
+        run: echo "Hola mundo  de ${{ env.name }}">>test.log
 
-  second_job:
-    # if: false
-    if: ${{ github.ref == 'refs/heads/main' }}
-    needs: first_job
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: hola mundo working dir
-        # if: false
-        run: ls -al
-
-      - name: action
-        uses: actions/checkout@v4
-
-      - name: def variable
-        id: def_variable
-        run: echo "my_variable= hola mundo variable">> $GITHUB_OUTPUT
-
-      - name: msj
-        run: echo "${{ steps.def_variable.outputs.my_variable }}"
+      - name: subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo test
+          path: test.log
