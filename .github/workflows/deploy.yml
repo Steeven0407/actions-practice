@@ -9,9 +9,12 @@ jobs:
   first_job:
     runs-on: ubuntu-latest
 
+    env:
+      name: steeven sayago
+
     steps:
       - name: hola mundo
-        run: echo "Hola mundo"
+        run: echo "Hola mundo  de ${{ env.name }}"
 
   second_job:
     # if: false
@@ -21,4 +24,5 @@ jobs:
 
     steps:
       - name: hola mundo
+        # if: false
         run: echo "Hola mundo en un segundo jobs"
